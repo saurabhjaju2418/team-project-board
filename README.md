@@ -1,44 +1,44 @@
-<div align="center">
+# Team Project Board
 
-<img src="assets/project-banner.svg" alt="Animated Commonplace — Team Project Board banner" width="900" />
+![Animated Team Project Board banner](assets/project-banner.svg)
 
-# Commonplace — Team Project Board
+A collaborative Kanban board for small product teams. This portfolio build demonstrates task workflow, board filtering, accessible drag and drop, and a keyboard friendly status control.
 
-**A collaborative planning board that makes ownership and the next action clear.**
+## Features
 
-Next.js · Supabase · dnd-kit · Tailwind CSS
+- Move tasks among Backlog, In progress, In review, and Done with drag and drop.
+- Change status from each task's native select control for keyboard and single pointer access.
+- Search the board and filter to work assigned to you.
+- Create tasks with priority, owner, and due date.
+- Persist tasks and activity in browser local storage.
+- Responsive layout with visible focus styles.
 
-![Project status](https://img.shields.io/badge/status-in%20progress-7a8b71)
+## Run locally
 
-</div>
+```bash
+npm install
+npm run dev
+```
 
-## Product scope
+## Current scope
 
-Multi-user project board with keyboard-accessible drag-and-drop, ownership, activity, and realtime updates.
+This is a front-end prototype. Tasks are stored in the current browser; authentication, shared persistence, and live collaboration are not connected yet. The Supabase migration is a schema proposal for the next milestone and has not been applied.
 
-## Architecture notes
+## Architecture
 
-Supabase Realtime updates boards; versioned writes handle reorder conflicts; RLS scopes workspace membership; dnd-kit supports keyboard interaction.
+- Next.js App Router + React + TypeScript
+- dnd-kit for pointer and keyboard drag interactions
+- Local storage for the demo state
+- Supabase/Postgres migration for workspaces, memberships, tasks, comments, and activity
 
-### Data model sketch
+## Roadmap
 
-    projects(id, workspace_id, name) · tasks(id, project_id, title, status, position, assignee_id, version) · activity_events(id, task_id, actor_id, action)
+1. Add Supabase Auth and workspace-scoped row-level security.
+2. Replace local storage with server actions and Supabase Realtime.
+3. Add comments, labels, and optimistic updates.
+4. Add integration tests and deploy the app.
 
-## Stack
+## Database proposal
 
-Next.js · Supabase · dnd-kit · Tailwind CSS
+See [`supabase/migrations/202610010001_initial_schema.sql`](supabase/migrations/202610010001_initial_schema.sql).
 
-## Build sequence
-
-1. Board and task lifecycle
-2. Accessible drag-and-drop ordering
-3. Realtime collaboration
-4. Workspace policies and history
-
-## Current status
-
-Public repository with an animated README. Product code is being built incrementally, one project at a time. This page records the planned product boundary and engineering milestones.
-
-## License
-
-MIT.
